@@ -6,11 +6,11 @@
 #include "board.h"
 
 class Shogi {
-	public:
+public:
 	struct Round {
 		int round;
-	    string black_move;
-	    string white_move;
+		string black_move;
+		string white_move;
 	};
 	
 	Shogi();
@@ -23,7 +23,7 @@ class Shogi {
 	
 	void startGame();
 	
-	void endGame(string message, int winner);
+	void endGame(const string &message, int winner);
 	
 	void recordMove(string move, bool pawn, bool capture, char promote);
 	
@@ -37,91 +37,91 @@ class Shogi {
 	
 	string findPiece(string move, int new_row, int new_col, Piece piece, int friendly_colour, bool capture);
 	
-	string makeMove(string move, int old_row, int old_col, int new_row, int new_col, Piece piece, bool capture);
+	string makeMove(string move, int old_row, int old_col, int new_row, int new_col, const Piece &piece, bool capture);
 	
-    bool positionInCheck(int pos_colour, int pos_row, int pos_col);
-
-    bool kingInCheck(int king_colour);
-    
-    bool kingInCheckmate(int king_colour);
-
+	bool positionInCheck(int pos_colour, int pos_row, int pos_col);
+	
+	bool kingInCheck(int king_colour);
+	
+	bool kingInCheckmate(int king_colour);
+	
 	bool kingInStalemate(int king_colour);
-    
-    bool isDraw();
-    
-    void setRound(int i);
-    
-    int getRound();
-    
-    void incrementRound();
-    
-    void setHalfmove(int i);
-    
-    int getHalfmove();
-    
-    void incrementHalfmove();
-    
-    void setTurn(int i);
-    
-    int getTurn();
-    
-    void changeTurn();
-    
-    void setEnd(bool b);
-    
-    bool getEnd();
-    
-    void resetRounds();
-    
-    vector<Round> getRounds();
-    
-    void addWhiteMove(string move);
-    
-    void addBlackMove(string move);
-    
-    void setPlayerOneColour(string c);
-    
-    void setPlayerTwoColour(string c);
-    
-    string getPlayerOneColour();
-    
-    string getPlayerTwoColour();
-    
-    void setWhitePieces(vector<Piece> p);
-    
-    void setBlackPieces(vector<Piece> p);
-    
-    vector<Piece> getWhitePieces();
-    
-    vector<Piece> getBlackPieces();
-    
-    void setWhitePromotionRows(vector<int> r);
-    
-    void setBlackPromotionRows(vector<int> r);
-    
-    vector<int> getWhitePromotionRows();
-    
-    vector<int> getBlackPromotionRows();
-    
-    void resetCaptures();
-    
-    void pushWhiteCaptures(string s);
-    
-    void pushBlackCaptures(string s);
-    
-    vector<string> getWhiteCaptures();
-    
-    vector<string> getBlackCaptures();
-    
-    void printWhiteCaptures();
-    
-    void printBlackCaptures();
-    
-    void refreshBoard();
+	
+	bool isDraw();
+	
+	void setRound(int i);
+	
+	[[nodiscard]] int getRound() const;
+	
+	void incrementRound();
+	
+	void setHalfmove(int i);
+	
+	[[nodiscard]] int getHalfmove() const;
+	
+	void incrementHalfmove();
+	
+	void setTurn(int i);
+	
+	[[nodiscard]] int getTurn() const;
+	
+	void changeTurn();
+	
+	void setEnd(bool b);
+	
+	[[nodiscard]] bool getEnd() const;
+	
+	void resetRounds();
+	
+	vector<Round> getRounds();
+	
+	void addWhiteMove(string move);
+	
+	void addBlackMove(string move);
+	
+	void setPlayerOneColour(string c);
+	
+	void setPlayerTwoColour(string c);
+	
+	string getPlayerOneColour();
+	
+	string getPlayerTwoColour();
+	
+	void setWhitePieces(vector<Piece> p);
+	
+	void setBlackPieces(vector<Piece> p);
+	
+	vector<Piece> getWhitePieces();
+	
+	vector<Piece> getBlackPieces();
+	
+	void setWhitePromotionRows(vector<int> r);
+	
+	void setBlackPromotionRows(vector<int> r);
+	
+	vector<int> getWhitePromotionRows();
+	
+	vector<int> getBlackPromotionRows();
+	
+	void resetCaptures();
+	
+	void pushWhiteCaptures(const string &s);
+	
+	void pushBlackCaptures(const string &s);
+	
+	vector<string> getWhiteCaptures();
+	
+	vector<string> getBlackCaptures();
+	
+	void printWhiteCaptures();
+	
+	void printBlackCaptures();
+	
+	void refreshBoard();
 
 private:
-	int round, halfmove, turn;
-	bool end;
+	int round{}, halfmove{}, turn{};
+	bool end{};
 	
 	vector<Round> rounds;
 	
@@ -130,7 +130,7 @@ private:
 	Board board;
 	
 	vector<int> black_promotion_rows, white_promotion_rows;
-    vector<string> black_captures, white_captures;
+	vector<string> black_captures, white_captures;
 	
 	// Chess symbols
 	static const char KING_SYMBOL = 'K';

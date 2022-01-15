@@ -10,10 +10,10 @@ using namespace std;
 
 void clearScreen();
 
-string str(char c);
+[[maybe_unused]] string str(char c);
 
-string to_upper(string str);
+string to_upper(const string &str);
 
-string to_lower(string str);
+[[maybe_unused]] string to_lower(const string &str);
 
 #endif //ASCII_CHESS_CPP_GENERAL_H

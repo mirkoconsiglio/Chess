@@ -20,7 +20,7 @@ public:
 	
 	void startGame();
 	
-	void endGame(string message, int winner);
+	void endGame(const string &message, int winner);
 	
 	void recordFEN(bool capture, bool pawn);
 	
@@ -42,13 +42,13 @@ public:
 	
 	string findPiece(string move, int new_row, int new_col, Piece piece, int friendly_colour, bool capture);
 	
-	string makeMove(string move, int old_row, int old_col, int new_row, int new_col, Piece piece, bool capture);
+	string makeMove(string move, int old_row, int old_col, int new_row, int new_col, const Piece &piece, bool capture);
 	
-	string advance(string move, int old_row, int col, int new_row, Piece piece);
+	string advance(string move, int old_row, int col, int new_row, const Piece &piece);
 	
 	void castle(string move, int row, int king_col, int rook_col, bool kingside);
 	
-	string enPassant(string move, int old_row, int old_col, int new_row, int new_col, Piece piece);
+	string enPassant(string move, int old_row, int old_col, int new_row, int new_col, const Piece &piece);
 	
 	bool positionInCheck(int pos_colour, int pos_row, int pos_col);
 	
@@ -62,31 +62,31 @@ public:
 	
 	bool isEnPassant(int row, int col, int enemy_colour);
 	
-	void kingMove(Piece piece);
+	void kingMove(const Piece &piece);
 	
 	void rookMove(Piece piece, int col);
 	
 	void setRound(int i);
 	
-	int getRound();
+	[[nodiscard]] int getRound() const;
 	
 	void incrementRound();
 	
 	void setHalfmove(int i);
 	
-	int getHalfmove();
+	[[nodiscard]] int getHalfmove() const;
 	
 	void incrementHalfmove();
 	
 	void setTurn(int i);
 	
-	int getTurn();
+	[[nodiscard]] int getTurn() const;
 	
 	void changeTurn();
 	
 	void setEnd(bool b);
 	
-	bool getEnd();
+	[[nodiscard]] bool getEnd() const;
 	
 	void resetRounds();
 	
@@ -100,7 +100,7 @@ public:
 	
 	string getFEN(int i);
 	
-	void addFEN(string f);
+	void addFEN(const string &f);
 	
 	void setPlayerOneColour(string c);
 	
@@ -136,9 +136,9 @@ public:
 	
 	void resetCaptures();
 	
-	void pushWhiteCaptures(string s);
+	void pushWhiteCaptures(const string &s);
 	
-	void pushBlackCaptures(string s);
+	void pushBlackCaptures(const string &s);
 	
 	vector<string> getWhiteCaptures();
 	
@@ -152,23 +152,23 @@ public:
 	
 	void setBlackQueensideCastle(bool b);
 	
-	bool getWhiteKingsideCastle();
+	[[nodiscard]] bool getWhiteKingsideCastle() const;
 	
-	bool getWhiteQueensideCastle();
+	[[nodiscard]] bool getWhiteQueensideCastle() const;
 	
-	bool getBlackKingsideCastle();
+	[[nodiscard]] bool getBlackKingsideCastle() const;
 	
-	bool getBlackQueensideCastle();
+	[[nodiscard]] bool getBlackQueensideCastle() const;
 	
 	void setEnPassant(int i);
 	
-	int getEnPassant();
+	[[nodiscard]] int getEnPassant() const;
 	
 	void refreshBoard();
 
 private:
-	int round, halfmove, turn;
-	bool end;
+	int round{}, halfmove{}, turn{};
+	bool end{};
 	
 	vector<Round> rounds;
 	
@@ -189,13 +189,13 @@ private:
 	static const char PAWN_SYMBOL = 'P';
 	static const char CASTLE_SYMBOL = 'O';
 	
-	vector<Piece> pieces, white_pieces, black_pieces;
+	vector<Piece> white_pieces, black_pieces;
 	
-	bool white_kingside_castle;
-	bool white_queenside_castle;
-	bool black_kingside_castle;
-	bool black_queenside_castle;
-	int en_passant;
+	bool white_kingside_castle{};
+	bool white_queenside_castle{};
+	bool black_kingside_castle{};
+	bool black_queenside_castle{};
+	int en_passant{};
 	
 	vector<string> FEN;
 };

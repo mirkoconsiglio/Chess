@@ -7,7 +7,7 @@
 class Board {
 private:
 	// Board properties
-	int rows, cols;
+	int rows{}, cols{};
 	vector<vector<Piece>> board;
 public:
 	Board();
@@ -16,35 +16,35 @@ public:
 	
 	~Board();
 	
-	char toX(char r);
-
-    char toY(char c);
-
-    char toCol(char y);
+	[[nodiscard]] char toX(char r) const;
+	
+	[[nodiscard]] static char toY(char c);
+	
+	static char toCol(char y);
 	
 	void setRows(int r);
-
+	
 	void setCols(int c);
 	
-	int getRows();
-
-	int getCols();
+	[[nodiscard]] int getRows() const;
+	
+	[[nodiscard]] int getCols() const;
 	
 	void setPiecePositions(vector<vector<Piece>> b);
 	
 	vector<vector<Piece>> getPiecePositions();
 	
-	void setPieceAtPosition(int row, int col, Piece piece);
-
+	void setPieceAtPosition(int row, int col, const Piece &piece);
+	
 	Piece getPieceAtPosition(int row, int col);
 	
 	void drawBoard();
-
+	
 	void refreshBoard();
 	
 	// Hard-coded symbols
-    static const char WHITE_SQUARE;
-    static const char BLACK_SQUARE;
+	static const char WHITE_SQUARE;
+	static const char BLACK_SQUARE;
 };
 
 
